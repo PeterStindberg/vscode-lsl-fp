@@ -846,7 +846,16 @@
         ],
         "description": "Triggered when task receives asynchronous data\n• key id – matches the return of the llTransfer* function\n• integer success – TRUE if the transfer succeeded otherwise FALSE.\n• string data – On successful transactions this will contain a CSV of information pertaining to the transaction. In failure, a string will be returned matching one of the error tags below."
     },
-
+    "linkset_data Event": {
+        "prefix": "linkeset_data",
+        "body": [
+            "linkset_data( integer ${1:action}, string ${2:name} , string ${3:value} )",
+            "{",
+            "\t$0",
+            "}"
+        ],
+        "description": "Triggered on actions taken on the linkset datastore (reset, update or delete)."
+    },
 
 
     "llSetPrimitiveParams": {
@@ -4007,6 +4016,13 @@
            "llSetLinkTextureAnim(${1:link}, ${2:mode}, ${3:face}, ${4:sizex}, ${5:sizey}, ${6:start}, ${7:length}, ${8:rate});$0"
         ],
         "description": "llSetLinkTextureAnim( integer link, integer mode, integer face, integer sizex, integer sizey, float start, float length, float rate );\n\n 356 Function ID\n 0.0 Forced Delay\n 10.0 Energy\n\nAnimate the texture on the specified face/faces of the specified prim/prims by setting the texture scale and offset. Identical to llSetTextureAnim except able to modify any prim in the link set.\n• integer link – Link number (0: unlinked, 1: root prim, >1: child prims and seated avatars) or a LINK_* flag to effect\n• integer mode – bit field of Mode flags\n• integer face – face number or ALL_SIDES\n• integer sizex – horizontal frames (ignored for ROTATE and SCALE)\n• integer sizey – vertical frames (ignored for ROTATE and SCALE)\n• float start – Start position/frame number (or radians for ROTATE)\n• float length – number of frames to display (or radians for ROTATE)\n• float rate – frames per second (must not be zero)\nIf face is ALL_SIDES then the function works on all sides.\nstart supports negative indexes.\nFrames are numbered from left to right, top to bottom, starting at 0.If rate is negative, it has the same effect as using the REVERSE flag.\n"
+    },
+    "llLinksetDataWrite": {
+        "prefix": "llLinksetDataWrite",
+        "body": [
+            "llLinksetDataWrite( string ${1:name}, string ${2:value} )$0"
+        ],
+        "description": "Creates or updates a key/value pair in the linksets datastore. Returns an integer indicating success or failure. 0 is success, a positive number indicates failure."
     },
 
     "ACTIVE": {
